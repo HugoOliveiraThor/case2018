@@ -10,14 +10,11 @@ import routes from './routes/routes'
 // Plugins
 import GlobalComponents from './globalComponents'
 import GlobalDirectives from './globalDirectives'
-import Notifications from './components/NotificationPlugin'
 import VModal from 'vue-js-modal'
 import Toasted from 'vue-toasted'
 
 // MaterialDashboard plugin
 import MaterialDashboard from './material-dashboard'
-
-import Chartist from 'chartist'
 
 // configure router
 const router = new VueRouter({
@@ -31,7 +28,6 @@ Vue.use(VueRouter)
 Vue.use(MaterialDashboard)
 Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
-Vue.use(Notifications)
 
 // I prefer register as global this component because I use in all places
 Vue.toasted.register('success', 'Sucesso!', {
@@ -48,21 +44,9 @@ Vue.toasted.register('error', 'Algo deu errado...!', {
   duration: 3000
 })
 
-// global library setup
-Object.defineProperty(Vue.prototype, '$Chartist', {
-  get () {
-    return this.$root.Chartist
-  }
-})
-
-export const serverBus = new Vue()
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   render: h => h(App),
-  router,
-  data: {
-    Chartist: Chartist
-  }
+  router
 })
