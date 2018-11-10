@@ -204,10 +204,6 @@ export default {
     opacity: 0;
     cursor: pointer;
 }
-li {
-  cursor: pointer;
-}
-
 /* Create a custom radio button */
 .checkmark {
     position: absolute;
