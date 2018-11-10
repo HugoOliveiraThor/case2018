@@ -4,7 +4,6 @@
     <md-field>
       <label>Digite aqui todas as informações de prescrição para o paciente</label>
       <md-textarea v-model="autogrow" md-autogrow></md-textarea>
-      {{array}}
     </md-field>
     <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
       <label>Por favor selecione uma palavra para iniciar a pesquisa...</label>
