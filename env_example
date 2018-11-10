@@ -1,0 +1,8 @@
+export default  {
+  apiKey: 'AIzaSyC_rnKpPtu1lMG-Sv62pZNRxSm_ai1zX48',
+  authDomain: 'recordes.nustreonm.vertr',
+  databaseURL: 'https://madrogapdui.firebisuh.com',
+  projectId: 'case20178978',
+  storageBucket: 'midoriakl.appspot.com',
+  messagingSenderId: '297522290190791'
+}
