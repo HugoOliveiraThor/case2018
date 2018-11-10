@@ -12,6 +12,7 @@
       <md-card>
         <md-card-header data-background-color="green">
           <h4 class="title">Pesquisar pacientes</h4>
+          <p class="category">Para visualizar o histórico do paciente clique em cima do mesmo...</p>
         </md-card-header>
         <md-card-content>
         <input
