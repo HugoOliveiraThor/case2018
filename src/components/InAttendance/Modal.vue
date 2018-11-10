@@ -22,7 +22,11 @@
                 <h5 class="title">Médico responsável:{{obj.doctor}} </h5>
               </div>
               </div>
-            <Prescription table-header-color="blue" :patientData="obj" :nameModal="modalName"></Prescription>
+            <Prescription
+              table-header-color="blue"
+              :patientData="obj"
+              :nameModal="modalName">
+            </Prescription>
           </md-card-content>
         </md-card>
       </div>
@@ -30,32 +34,27 @@
   </modal>
 </template>
 <script>
-import Prescription from "./Prescription";
+import Prescription from './Prescription'
 export default {
-  name: "DefaultModal",
+  name: 'DefaultModal',
   components: {
     Prescription
   },
-  props: ["titulo", "modalName", "subtitle"],
+  props: ['titulo', 'modalName', 'subtitle'],
   data() {
     return {
       obj: {
-        patient: "",
-        doctor: ""
+        patient: '',
+        doctor: ''
       }
-    };
+    }
   },
   methods: {
     beforeOpen(event) {
-      console.log("EVENT", event.params);
-      this.obj = event.params;
-      console.log(this.obj);
-      // Set the opening time of the modal
+      this.obj = event.params
     },
     beforeClose(event) {
-      console.log("Event", event);
-      // If modal was open less then 5000 ms - prevent closing it
     }
   }
-};
+}
 </script>
