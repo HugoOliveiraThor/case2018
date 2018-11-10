@@ -5,7 +5,7 @@
         <md-card>
           <md-card-header data-background-color="blue">
             <h4 class="title">Em atendimento</h4>
-            <p class="category">Pacientes em atendimento no momento</p>
+            <p class="category">Para selecionar um atendimento só clique em cima do mesmo...</p>
           </md-card-header>
           <md-card-content>
             <list table-header-color="blue"></list>

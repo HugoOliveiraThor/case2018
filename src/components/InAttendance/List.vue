@@ -62,3 +62,8 @@ export default {
   }
 }
 </script>
+<style>
+.md-table-row {
+  cursor:pointer
+}
+</style>
