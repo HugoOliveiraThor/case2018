@@ -15,6 +15,7 @@
 * [Vue-toasted](https://github.com/shakee93/vue-toasted) - Responsive Touch Compatible Toast plugin for VueJS 2+
 * [Firebase](https://firebase.google.com/) - NoSql database
 * [Fakerjs](https://github.com/marak/Faker.js/) - Generate massive amount of realistics fake data
+* ESLINT - Default value
 
 
 [CHANGELOG]: ./CHANGELOG.md
