@@ -46,7 +46,7 @@ export default{
     },
     imgLogo: {
       type: String,
-      default: require('@/assets/img/vitta.svg')
+      default: require('@/assets/img/vitta_logo.svg')
     },
     activeColor: {
       type: String,
@@ -84,5 +84,8 @@ export default{
     .nav-mobile-menu{
       display: none;
     }
+  }
+  .sidebar .logo .simple-text .logo-img img {
+    width: 85% !important;
   }
 </style>
