@@ -8,16 +8,13 @@
 `npm run build`
 ### Dont forget to add .env in your root source , without it you cannot access the database
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
 ### What's dependencies importants that i used
-* moment
-* vue-material
-* vue-router
-* vue-toasted
-* firebase
-* fakerjs
-
+* [Momentjs](https://momentjs.com/) - Work with datas
+* [Vue-material](https://vuematerial.io/) - Material design for VueJs
+* [Vue-router](https://router.vuejs.org/) - Official router for Vue.js
+* [Vue-toasted](https://github.com/shakee93/vue-toasted) - Responsive Touch Compatible Toast plugin for VueJS 2+
+* [Firebase](https://firebase.google.com/) - NoSql database
+* [Fakerjs](https://github.com/marak/Faker.js/) - Generate massive amount of realistics fake data
 
 
 [CHANGELOG]: ./CHANGELOG.md
