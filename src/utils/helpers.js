@@ -12,4 +12,3 @@ export const formatSecondsToDateDDMMYYYYHHMM = sec => {
   const date = convertSecondsTimeStampToDate(sec)
   return formatDateToDDMMYYYYHHMM(date)
 }
-

@@ -51,20 +51,19 @@
         Salvar
     </md-button>
     </div>
-
   </div>
 </template>
 
 <script>
-import { Search, NavTabsCard, NavTabsTable } from "@/components";
-import db from "@/firebase/init";
-import json from "@/initial_charge/medicamentos.json";
-import interacaoMedicamentosa from "@/initial_charge/interacao_medicamentosa.json";
-import Modal from "./SimpleModal";
+import { Search, NavTabsCard } from '@/components'
+import db from '@/firebase/init'
+import json from '@/initial_charge/medicamentos.json'
+import interacaoMedicamentosa from '@/initial_charge/interacao_medicamentosa.json'
+import Modal from './SimpleModal'
 
 export default {
-  name: "Prescription",
-  props: ["patientData", "nameModal"],
+  name: 'Prescription',
+  props: ['patientData', 'nameModal'],
   components: {
     Search,
     NavTabsCard,
@@ -74,58 +73,57 @@ export default {
     data: [],
     showDosage: false,
     radio: false,
-    selectedRadio:'',
-    times: [{value:'12h em 12h'},{value:'6h em 6h'}, {value:'8h em 8h'}, {value:'24h em 24h'}],
+    selectedRadio: '',
+    times: [{ value: '12h em 12h' }, { value: '6h em 6h' }, { value: '8h em 8h' }, { value: '24h em 24h' }],
     array: [],
     pagination: 20,
     dados: [],
     filter: [],
-    autogrow: "",
-    search: "",
+    autogrow: '',
+    search: '',
     letters: [
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "I",
-      "J",
-      "L",
-      "M",
-      "N",
-      "O",
-      "P",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "U",
-      "V",
-      "X",
-      "Z"
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+      'F',
+      'G',
+      'H',
+      'I',
+      'J',
+      'L',
+      'M',
+      'N',
+      'O',
+      'P',
+      'Q',
+      'R',
+      'S',
+      'T',
+      'U',
+      'V',
+      'X',
+      'Z'
     ]
   }),
   computed: {
-    filteredList() {
+    filteredList () {
       const data = this.filter.filter(i => {
-        return i.nome.includes(this.search);
-      });
-      return data;
+        return i.nome.includes(this.search)
+      })
+      return data
     }
   },
   watch: {
-    selectedRadio(val) {
-      if(val !== '') {
-        this.array[this.array.length-1].dosage = val
+    selectedRadio (val) {
+      if (val !== '') {
+        this.array[this.array.length - 1].dosage = val
       }
     }
   },
   methods: {
-    selectedLetter(letter) {
-      console.log(json);
+    selectedLetter (letter) {
       this.filter = json
         .filter(d => d.Nome.startsWith(letter))
         .slice(1, this.pagination)
@@ -134,31 +132,29 @@ export default {
             id: d.IdMedicamento,
             nome: d.Nome,
             viaAdministracao: d.ViaAdministracao
-          };
-        });
-      console.log(this.filter);
+          }
+        })
+      console.log(this.filter)
     },
-    selectMedication(med) {
+    selectMedication (med) {
       this.selectedRadio = ''
       const isExistInArray = this.array.filter(i => {
-        return i.id === med.id;
-      });
+        return i.id === med.id
+      })
       if (isExistInArray.length === 0) {
-          this.showDosage = true;
-          console.log('OLa', this.selectedRadio)
-          this.array.push(med);
-          // this.showDosage = false
-          if(this.selectedRadio !== '') {
-            console.log(this.selectedRadio)
-            med.dosage = selectedRadio.value
-            this.array.push(med);
-            this.showDosage = false;
-            this.selectedRadio = ''
-          }
+        this.showDosage = true
+        this.array.push(med)
+        // this.showDosage = false
+        if (this.selectedRadio !== '') {
+          med.dosage = selectedRadio.value
+          this.array.push(med)
+          this.showDosage = false
+          this.selectedRadio = ''
+        }
       }
     },
-    save() {
-      db.collection("patient")
+    save () {
+      db.collection('patient')
         .add({
           patientId: this.patientData.patientId,
           name: this.patientData.patient,
@@ -169,11 +165,11 @@ export default {
           type: 4
         })
         .then(() => {
-          this.$modal.hide(this.nameModal);
-        });
+          this.$modal.hide(this.nameModal)
+        })
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -227,7 +223,7 @@ export default {
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmark:after {
-    content: "";
+    content: '';
     position: absolute;
     display: none;
 }
@@ -239,12 +235,12 @@ export default {
 
 /* Style the indicator (dot/circle) */
 .container .checkmark:after {
- 	top: 6px;
-	left: 6px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: white;
+top:6px;
+left:6px;
+width:8px;
+height:8px;
+border-radius:50%;
+background:white;
 }
 .footer {
   position:fixed;

@@ -49,8 +49,7 @@
 </template>
 <script>
 import db from '@/firebase/init'
-import moment from 'moment'
-import {formatSecondsToDateDDMMYYYYHHMM} from '@/utils/helpers'
+import { formatSecondsToDateDDMMYYYYHHMM } from '@/utils/helpers'
 export default {
   name: "SimpleModal",
   props: ['modalName'],
@@ -58,12 +57,11 @@ export default {
     return {
       obj: {},
       array: []
-    };
+    }
   },
   methods: {
-    beforeOpen(event) {
+    beforeOpen (event) {
       this.obj = event.params;
-      console.log(this.obj);
       db.collection('patient')
       .where('patientId','==',this.obj.id)
       .get()
@@ -77,8 +75,8 @@ export default {
       })
     })
     },
-    beforeClose(event) {
-    },
+    beforeClose (event) {
+    }
   }
-};
+}
 </script>
