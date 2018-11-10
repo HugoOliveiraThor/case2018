@@ -4,6 +4,7 @@
     <md-field>
       <label>Digite aqui todas as informações de prescrição para o paciente</label>
       <md-textarea v-model="autogrow" md-autogrow></md-textarea>
+      {{array}}
     </md-field>
     <div class="md-layout-item md-medium-size-100 md-small-size-100 md-xsmall-size-100">
       <label>Por favor selecione uma palavra para iniciar a pesquisa...</label>
@@ -24,8 +25,8 @@
       </div>
     </div>
     <div class="md-layout">
-      <div class="md-layout-item md-medium-size-50 md-size-50 md-small-size-50 md-xsmall-size-50">
-        <div class="container list-medications">
+      <div class="md-layout-item md-medium-size-30 md-size-30 md-small-size-30 md-xsmall-size-100">
+      <div class="list-medications">
         <ul>
           <li v-for="i in filteredList" :key="i.id" @click="selectMedication(i)">
             {{i.nome}}
@@ -33,7 +34,7 @@
         </ul>
         </div>
       </div>
-      <div v-if="showDosage" class="md-layout-item md-medium-size-50 md-size-50 md-small-size-50 md-xsmall-size-50">
+      <div v-if="showDosage" class="md-layout-item md-medium-size-30 md-size-30 md-small-size-30 md-xsmall-size-100">
           <label>Posologia -{{selectedRadio}}</label>
           <div v-for="(time,idx) in times" :key="idx">
         <label class="container">{{time.value}}
@@ -41,6 +42,16 @@
           <span class="checkmark"></span>
         </label>
           </div>
+      </div>
+      <div v-if="array.length" class="md-layout-item md-medium-size-30 md-size-30 md-small-size-30 md-xsmall-size-100">
+      <label>Medicamentos selecionados...</label>
+      <div class="list-medications">
+        <ul>
+          <li v-for="(medication, idx) in array" :key="idx" @click="selectMedication(i)">
+            {{medication.nome}}
+          </li>
+        </ul>
+        </div>
       </div>
     </div>
     <div class="footer">
@@ -109,17 +120,12 @@ export default {
   }),
   computed: {
     filteredList () {
-      const data = this.filter.filter(i => {
-        return i.nome.includes(this.search)
-      })
-      return data
+      return this.filter.filter(i => i.nome.includes(this.search))
     }
   },
   watch: {
     selectedRadio (val) {
-      if (val !== '') {
-        this.array[this.array.length - 1].dosage = val
-      }
+      if (val !== '') this.array[this.array.length - 1].dosage = val
     }
   },
   methods: {
@@ -134,7 +140,6 @@ export default {
             viaAdministracao: d.ViaAdministracao
           }
         })
-      console.log(this.filter)
     },
     selectMedication (med) {
       this.selectedRadio = ''
@@ -144,9 +149,7 @@ export default {
       if (isExistInArray.length === 0) {
         this.showDosage = true
         this.array.push(med)
-        // this.showDosage = false
         if (this.selectedRadio !== '') {
-          med.dosage = selectedRadio.value
           this.array.push(med)
           this.showDosage = false
           this.selectedRadio = ''
@@ -201,6 +204,9 @@ export default {
     position: absolute;
     opacity: 0;
     cursor: pointer;
+}
+li {
+  cursor: pointer;
 }
 
 /* Create a custom radio button */

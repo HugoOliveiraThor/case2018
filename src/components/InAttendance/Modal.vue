@@ -19,7 +19,7 @@
               <h5 class="title">Paciente: {{obj.patient}} </h5>
               </div>
               <div class="md-layout-item md-medium-size-50 md-small-size-50 md-xsmall-size-100">
-                <h5 class="title">Médico responsável:{{obj.doctor}} </h5>
+                <h5 class="title">Médico responsável: {{obj.doctor}} </h5>
               </div>
               </div>
             <Prescription
