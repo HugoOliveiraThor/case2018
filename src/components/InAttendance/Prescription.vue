@@ -165,7 +165,10 @@ export default {
           type: 4
         })
         .then(() => {
+          this.$toasted.global.success()
           this.$modal.hide(this.nameModal)
+        }).catch(() => {
+          this.$toasted.global.error()
         })
     }
   }
@@ -213,34 +216,34 @@ export default {
 
 /* On mouse-over, add a grey background color */
 .container:hover input ~ .checkmark {
-    background-color: #ccc;
+  background-color: #ccc;
 }
 
 /* When the radio button is checked, add a blue background */
 .container input:checked ~ .checkmark {
-    background-color: #2196F3;
+  background-color: #2196F3;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmark:after {
-    content: '';
-    position: absolute;
-    display: none;
+  content: '';
+  position: absolute;
+  display: none;
 }
 
 /* Show the indicator (dot/circle) when checked */
 .container input:checked ~ .checkmark:after {
-    display: block;
+  display: block;
 }
 
 /* Style the indicator (dot/circle) */
 .container .checkmark:after {
-top:6px;
-left:6px;
-width:8px;
-height:8px;
-border-radius:50%;
-background:white;
+  top:6px;
+  left:6px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:white;
 }
 .footer {
   position:fixed;

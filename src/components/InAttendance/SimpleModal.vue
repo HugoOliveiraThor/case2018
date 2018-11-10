@@ -30,26 +30,21 @@
 </template>
 <script>
 export default {
-  name: "SimpleModal",
-  props: ["titulo", "modalName", "subtitle"],
+  name: 'SimpleModal',
+  props: ['titulo', 'modalName', 'subtitle'],
   data() {
     return {
       obj: {
-        patient: "",
-        doctor: ""
+        patient: '',
+        doctor: ''
       }
-    };
+    }
   },
   methods: {
-    beforeOpen(event) {
-      console.log("EVENT", event.params);
-      this.obj = event.params;
-      console.log(this.obj);
-      // Set the opening time of the modal
+    beforeOpen (event) {
+      this.obj = event.params
     },
-    beforeClose(event) {
-      console.log("Event", event);
-      // If modal was open less then 5000 ms - prevent closing it
+    beforeClose (event) {
     }
   }
 };
