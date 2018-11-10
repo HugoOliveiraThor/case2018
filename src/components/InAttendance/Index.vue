@@ -9,10 +9,8 @@
           </md-card-header>
           <md-card-content>
             <list table-header-color="blue"></list>
-            <!-- <Prescription table-header-color="blue"></Prescription> -->
           </md-card-content>
         </md-card>
-        <button @click="openModal">Abrir modal</button>
       </div>
     </div>
     <Modal titulo="Prescrição do paciente" :modalName=modalName />

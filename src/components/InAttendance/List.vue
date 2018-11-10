@@ -2,12 +2,11 @@
   <div>
     <md-table v-model="patients" :table-header-color="tableHeaderColor">
       <md-table-row slot="md-table-row" slot-scope="{ item }" @click="selectedItem(item)">
-        <md-table-cell md-label="Médico">{{ item.doctor }} -- {{isPrescription}}</md-table-cell>
+        <md-table-cell md-label="Médico">{{ item.doctor }}</md-table-cell>
         <md-table-cell md-label="Paciente">{{ item.patient }}</md-table-cell>
         <md-table-cell md-label="Consultório">{{ item.chamber }}</md-table-cell>
       </md-table-row>
     </md-table>
-    <!-- <Prescription v-if="isPrescription"/> -->
     <Modal titulo="Prescrição do paciente" :modalName=modalName />
   </div>
 </template>
@@ -15,7 +14,6 @@
 <script>
 import faker from 'faker'
 import db from '@/firebase/init'
-import { serverBus } from '../../main';
 import Prescription from './Prescription'
 import Modal from './Modal'
 

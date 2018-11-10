@@ -17,7 +17,7 @@ const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/dashboard',
+    redirect: '/in-attendance',
     children: [
       {
         path: 'user',
