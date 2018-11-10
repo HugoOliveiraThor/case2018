@@ -1,6 +1,5 @@
 import DashboardLayout from '@/pages/Layout/DashboardLayout.vue'
 
-// import Dashboard from '@/pages/Dashboard.vue'
 import ContainerList from '@/components/InAttendance/Index'
 import AddPatient from '@/components/Patient/Index'
 import AddDoctor from '@/components/Doctor/Index'

@@ -1,6 +1,10 @@
 <template>
 <div class="md-autocomplete">
-      <md-autocomplete class="search" v-model="selected" :md-options="list">
+      <md-autocomplete
+        class="search"
+        v-model="selected"
+        :md-options="list"
+      >
         <label>Lista de {{nameOfList}} - {{selected}} ...</label>
       </md-autocomplete>
 </div>
@@ -15,13 +19,6 @@ export default {
       selected:null,
       list:this._props.data || []
     }
-  },
-  created() {
-    console.log('Created')
-    console.log(this.list)
-  },
-  beforeMounted () {
-    console.log('Before')
   }
 }
 </script>

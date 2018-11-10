@@ -9,20 +9,20 @@
         <p>Em atendimento</p>
       </sidebar-link>
 
-      <sidebar-link to="/user">
+      <!-- <sidebar-link to="/user">
         <md-icon>person</md-icon>
         <p>Usuários</p>
-      </sidebar-link>
+      </sidebar-link> -->
 
       <sidebar-link to="/patient">
         <md-icon>person</md-icon>
         <p>Pacientes</p>
       </sidebar-link>
 
-      <sidebar-link to="/doctor">
+      <!-- <sidebar-link to="/doctor">
         <md-icon>person</md-icon>
         <p>Médicos</p>
-      </sidebar-link>
+      </sidebar-link> -->
 
     </side-bar>
 
