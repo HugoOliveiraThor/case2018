@@ -12,3 +12,5 @@ export const formatSecondsToDateDDMMYYYYHHMM = sec => {
   const date = convertSecondsTimeStampToDate(sec)
   return formatDateToDDMMYYYYHHMM(date)
 }
+
+export const getLastElementInArray = array => array ? array[array.length - 1] : null

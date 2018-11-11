@@ -146,9 +146,7 @@ export default {
     },
     selectMedication (med) {
       this.selectedRadio = ''
-      const isExistInArray = this.array.filter(i => {
-        return i.id === med.id
-      })
+      const isExistInArray = this.array.filter(i => i.id === med.id)
       if (isExistInArray.length === 0) {
         this.showDosage = true
         this.array.push(med)
