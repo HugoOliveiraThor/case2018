@@ -34,7 +34,7 @@
         </div>
       </div>
       <div v-if="showDosage" class="md-layout-item md-medium-size-30 md-size-30 md-small-size-30 md-xsmall-size-100">
-          <label>Posologia -{{selectedRadio}}</label>
+          <label>Posologia</label>
           <div v-for="(time,idx) in times" :key="idx">
         <label class="container">{{time.value}}
           <input type="radio" :name="time.value" :value="time.value" v-model="selectedRadio">
@@ -81,9 +81,11 @@ export default {
   },
   created () {
     const valor = interacaoMedicamentosa.slice(1,10)
+    this.alertMedication = valor
     console.log(valor)
   },
   data: () => ({
+    alertMedication : [],
     data: [],
     showDosage: false,
     radio: false,
@@ -174,6 +176,9 @@ export default {
         }).catch(() => {
           this.$toasted.global.error()
         })
+    },
+    filterMedication () {
+
     }
   }
 }
