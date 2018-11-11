@@ -21,15 +21,6 @@ export default {
   },
   data () {
     return {
-      selected: [],
-      users: [
-        {
-          doctor: 'Dakota Rice',
-          patient: '$36,738',
-          chamber: 'Niger'
-        },
-
-      ]
     }
   }
 }
