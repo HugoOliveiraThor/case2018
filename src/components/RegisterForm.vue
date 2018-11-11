@@ -70,7 +70,8 @@ export default {
   methods: {
     add () {
       db.collection('patient').add(this.person)
-      .then(() => {
+      .then((result) => {
+        this.$emit('addPerson', {...this.person, id: result.id})
         this.person = {
           name:null,
           age:null,

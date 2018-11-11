@@ -23,6 +23,7 @@
               </div>
               </div>
             <Prescription
+              @clicked="onClickChild"
               table-header-color="blue"
               :patientData="obj"
               :nameModal="modalName">

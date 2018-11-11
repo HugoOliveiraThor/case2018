@@ -3,6 +3,7 @@
     <div class="md-layout">
       <div class="md-layout-item md-medium-size-100 md-size-100 md-small-size-100 md-xsmall-size-100">
         <edit-profile-form
+          @addPerson="addPerson"
           data-background-color="blue"
           title="Adicionar paciente"
           :type=2>
@@ -77,6 +78,9 @@ export default{
   methods:{
     detailsPatient (pat) {
       this.$modal.show('teste', {...pat})
+    },
+    addPerson (person) {
+        this.patients.push(person)
     }
   }
 }

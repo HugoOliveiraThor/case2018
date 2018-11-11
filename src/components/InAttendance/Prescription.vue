@@ -79,6 +79,10 @@ export default {
     NavTabsCard,
     Modal
   },
+  created () {
+    const valor = interacaoMedicamentosa.slice(1,10)
+    console.log(valor)
+  },
   data: () => ({
     data: [],
     showDosage: false,
