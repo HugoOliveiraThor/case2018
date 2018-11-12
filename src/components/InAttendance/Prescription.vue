@@ -80,9 +80,31 @@ export default {
     Modal
   },
   created() {
+    // dados => "ACETAZOLAMIDA" e "AMITRIPTILINA"
+    const dados = interacaoMedicamentosa.slice(1,100)
+    this.intMedicamentosa = dados.map( i => {
+      return {...i , farmacos: [ i.Farmaco1, i.Farmaco2 ]}
+    })
+    console.log('TEM', this.intMedicamentosa.filter(d => {
+      return d.farmacos.includes("ACETAZOLAMIDA")
+    }))
+    const medicacoes= json.slice(1,1000)
+    console.log(medicacoes)
+    const teste = this.intMedicamentosa.map(d => {
+        const valor = medicacoes.filter(m => {
+          if(d.farmacos.includes(m.nome)) {
+            return d
+          }
+        })
+        // console.log('valor', valor)
+    })
+
+    // console.log('comInter',comInteracoes)
 
   },
   data: () => ({
+    intMedicamentosa : [],
+    arrayInteracao : [],
     data: [],
     showDosage: false,
     radio: false,
@@ -144,6 +166,7 @@ export default {
         })
     },
     selectMedication (med) {
+      this.verifyInteration(med)
       this.selectedRadio = ''
       const isExistInArray = this.array.filter(i => i.id === med.id)
       if (isExistInArray.length === 0) {
@@ -155,6 +178,17 @@ export default {
           this.selectedRadio = ''
         }
       }
+    },
+    verifyInteration (med) {
+      if(this.intMedicamentosa.farmacos.includes(med.nome)) {
+          if(arrayInteracao.farmacos.includes(med)) {
+          console.log('Já existe')
+      } else {
+          console.log('Não existe')
+        this.arrayInteracao.push(med)
+      }
+      }
+      console.log('ArrayInteração', this.arrayInteracao)
     },
     save () {
       db.collection('patient')
