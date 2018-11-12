@@ -80,24 +80,24 @@ export default {
     Modal
   },
   created() {
-    // dados => "ACETAZOLAMIDA" e "AMITRIPTILINA"
-    const dados = interacaoMedicamentosa.slice(1,100)
+    // dados => "ACETAZOLAMIDA" e "AMITRIPTILINA" "IMIPRAMINA"
+    const dados = interacaoMedicamentosa.slice(1,1000)
     this.intMedicamentosa = dados.map( i => {
       return {...i , farmacos: [ i.Farmaco1, i.Farmaco2 ]}
     })
     console.log('TEM', this.intMedicamentosa.filter(d => {
       return d.farmacos.includes("ACETAZOLAMIDA")
     }))
-    const medicacoes= json.slice(1,1000)
-    console.log(medicacoes)
-    const teste = this.intMedicamentosa.map(d => {
-        const valor = medicacoes.filter(m => {
-          if(d.farmacos.includes(m.nome)) {
-            return d
-          }
-        })
-        // console.log('valor', valor)
-    })
+    // const medicacoes= json.slice(1,1000)
+    // console.log(medicacoes)
+    // const teste = this.intMedicamentosa.map(d => {
+    //     const valor = medicacoes.filter(m => {
+    //       if(d.farmacos.includes(m.nome)) {
+    //         return d
+    //       }
+    //     })
+    //     // console.log('valor', valor)
+    // })
 
     // console.log('comInter',comInteracoes)
 
@@ -111,7 +111,7 @@ export default {
     selectedRadio: '',
     times: [{ value: '12h em 12h' }, { value: '6h em 6h' }, { value: '8h em 8h' }, { value: '24h em 24h' }],
     array: [],
-    pagination: 20,
+    pagination: 300,
     dados: [],
     filter: [],
     autogrow: '',
@@ -180,15 +180,19 @@ export default {
       }
     },
     verifyInteration (med) {
-      if(this.intMedicamentosa.farmacos.includes(med.nome)) {
-          if(arrayInteracao.farmacos.includes(med)) {
-          console.log('Já existe')
-      } else {
-          console.log('Não existe')
-        this.arrayInteracao.push(med)
-      }
-      }
-      console.log('ArrayInteração', this.arrayInteracao)
+      const valor = this.isMedicationExistInInteracaoMedicamentose(med)
+      console.log('VALOR', valor)
+      // if(this.intMedicamentosa.farmacos.filter(f => { f.farmacos.includes(med.nome)})) {
+      //     if(arrayInteracao.farmacos.includes(med)) {
+      //     console.log('Já existe')
+      //   } else {
+      //       console.log('Não existe')
+      //     this.arrayInteracao.push(med)
+      //   }
+      // }
+    },
+    isMedicationExistInInteracaoMedicamentose (med) {
+      return this.intMedicamentosa.some(f => f.farmacos.includes(med.nome))
     },
     save () {
       db.collection('patient')
