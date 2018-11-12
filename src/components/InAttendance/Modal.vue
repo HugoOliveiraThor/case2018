@@ -25,12 +25,15 @@
             <Prescription
               table-header-color="blue"
               :patientData="obj"
+              @bringMessage="showWarningModal"
               :nameModal="modalName">
             </Prescription>
           </md-card-content>
         </md-card>
       </div>
     </div>
+    <button type="text" @click="showWarningModal" class="btn btn-button">Ola</button>
+    <v-dialog/>
   </modal>
 </template>
 <script>
@@ -54,6 +57,19 @@ export default {
       this.obj = event.params
     },
     beforeClose(event) {
+    },
+    showWarningModal (message) {
+      this.$modal.show('dialog', {
+        title: 'Atenção há interação medicamentosa!',
+        text: message,
+        buttons: [
+          {
+            title: 'Entendi, fechar!',
+            default: true,
+            handler: () => {this.$modal.hide('dialog')} // Button click handler
+          }
+        ]
+      })
     }
   }
 }

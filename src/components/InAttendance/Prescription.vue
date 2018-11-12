@@ -188,7 +188,7 @@ export default {
       const data =this.findInArrayInteracaoWhereIsTheMedSelected(med)
       data.forEach(element => {
         const removeNameUsed = this.array.filter(d => d.nome !== med.Nome) // This necessary to avoid problem with comparison with the same name
-        removeNameUsed.forEach(m => { if (element.farmacos.includes(m.nome)) this.warningMessage(element.Descricao) })
+        removeNameUsed.forEach(m => { if (element.farmacos.includes(m.nome)) this.showWarningModal(element.Descricao) })
       })
     },
     warningMessage(message) {
@@ -216,6 +216,24 @@ export default {
         }).catch(() => {
           this.$toasted.global.error()
         })
+    },
+    showWarningModal (message) {
+      console.log('Entrou message', message)
+      this.$emit('bringMessage', message)
+      // this.$modal.show('dialog', {
+      //   title: 'Interação medicamentosa!',
+      //   root:true,
+      //   text: message,
+      //   buttons: [
+      //     {
+      //       title: 'Fechar',       // Button title
+      //       default: true,    // Will be triggered by default if 'Enter' pressed.
+      //       handler: () => {
+      //         this.$modal.hide('dialog')
+      //       } // Button click handler
+      //     },
+      //   ]
+      // })
     }
   }
 }
