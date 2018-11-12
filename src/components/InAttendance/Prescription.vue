@@ -96,7 +96,7 @@ export default {
   }),
   computed: {
     filteredList () {
-      return this.filter.filter(i => i.nome.includes(this.search))
+      return this.filter.filter(i => i.nome.includes(this.search.toUpperCase()))
     }
   },
   watch: {
