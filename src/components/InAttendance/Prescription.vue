@@ -106,6 +106,7 @@ export default {
   },
   methods: {
     selectedLetter (letter) {
+      this.search = ''
       this.filter = json
         .filter(d => d.Nome.startsWith(letter))
         .slice(1, this.pagination)
