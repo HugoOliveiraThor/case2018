@@ -85,22 +85,6 @@ export default {
     this.intMedicamentosa = dados.map( i => {
       return {...i , farmacos: [ i.Farmaco1, i.Farmaco2 ]}
     })
-    console.log('TEM', this.intMedicamentosa.filter(d => {
-      return d.farmacos.includes("ACETAZOLAMIDA")
-    }))
-    // const medicacoes= json.slice(1,1000)
-    // console.log(medicacoes)
-    // const teste = this.intMedicamentosa.map(d => {
-    //     const valor = medicacoes.filter(m => {
-    //       if(d.farmacos.includes(m.nome)) {
-    //         return d
-    //       }
-    //     })
-    //     // console.log('valor', valor)
-    // })
-
-    // console.log('comInter',comInteracoes)
-
   },
   data: () => ({
     intMedicamentosa : [],
@@ -183,41 +167,41 @@ export default {
       const interactions = this.isMedicationExistInInteracaoMedicamentose(med)
       if(interactions.length) {
         if (this.arrayInteracao.length === 0) { // Verify if our array is empty
-          console.log('Não tem nenhum já adicionou')
-          this.arrayInteracao.push(interactions)
+          this.arrayInteracao.push(...interactions)
         } else {
-          if(this.isMedicationExistInInteracaoMedicamentose(med)) {
-             console.log('Já existe no array')
-             console.log(this.arrayInteracao)
-          }
+          if(this.isMedicationExistInInteracaoMedicamentose(med)) this.verifyIfHaveInteractions(med)
         }
       }
-      // console.log('Existe JSON Interacao Medicamentosa', valor)
-      // if(this.isMedicationExistInInteracaoMedicamentose(med)) {
-      //   if(this.arrayInteracao.lenght === 0) {
-      //     this.arrayInteracao.push()
-      //   }
-      //   const valor = this.isMedicationExistInInteracaoMedicamentose(med)
-      //   console.log('ExistArrayInteracaoMedicamentosa', valor)
-      // }
-      // if(this.intMedicamentosa.farmacos.filter(f => { f.farmacos.includes(med.nome)})) {
-      //     if(arrayInteracao.farmacos.includes(med)) {
-      //     console.log('Já existe')
-      //   } else {
-      //       console.log('Não existe')
-      //     this.arrayInteracao.push(med)
-      //   }
-      // }
     },
     isMedicationExistInInteracaoMedicamentose (med) {
       return this.intMedicamentosa.filter(i => {
-        if (i.farmacos.includes(med.nome)) {
-          return i
-        }
+        if (i.farmacos.includes(med.nome)) return i
       })
     },
     isMedicationExistsInArrayInteracaoMedicamentosa (med) {
       return this.arrayInteracao.some(f => f.farmacos.includes(med.nome))
+    },
+    findInArrayInteracaoWhereIsTheMedSelected (med) {
+      return this.arrayInteracao.filter(a => a.farmacos.includes(med.nome))
+    },
+    verifyIfHaveInteractions (med) {
+      const data =this.findInArrayInteracaoWhereIsTheMedSelected(med)
+      data.forEach(element => {
+        const removeNameUsed = this.array.filter(d => d.nome !== med.Nome) // This necessary to avoid problem with comparison with the same name
+        removeNameUsed.forEach(m => {
+          if (element.farmacos.includes(m.nome)) {
+            this.warningMessage(element.Descricao)
+          }
+        })
+      })
+    },
+    warningMessage(message) {
+      this.$toasted.show(message, {
+	      theme: "bubble",
+	      position: "top-center",
+        duration : 10000,
+        icon : 'warning',
+    })
     },
     save () {
       db.collection('patient')
