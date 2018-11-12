@@ -156,9 +156,6 @@ export default {
         if (i.farmacos.includes(med.nome)) return i
       })
     },
-    isMedicationExistsInArrayInteracaoMedicamentosa (med) {
-      return this.arrayInteracao.some(f => f.farmacos.includes(med.nome))
-    },
     findInArrayInteracaoWhereIsTheMedSelected (med) {
       return this.arrayInteracao.filter(a => a.farmacos.includes(med.nome))
     },
@@ -168,14 +165,6 @@ export default {
         const removeNameUsed = this.array.filter(d => d.nome !== med.Nome) // This necessary to avoid problem with comparison with the same name
         removeNameUsed.forEach(m => { if (element.farmacos.includes(m.nome)) this.showWarningModal(element.Descricao) })
       })
-    },
-    warningMessage(message) {
-      this.$toasted.show(message, {
-	      theme: "bubble",
-	      position: "top-center",
-        duration : 10000,
-        icon : 'warning',
-    })
     },
     save () {
       db.collection('patient')
@@ -196,22 +185,8 @@ export default {
         })
     },
     showWarningModal (message) {
-      console.log('Entrou message', message)
       this.$emit('bringMessage', message)
-      // this.$modal.show('dialog', {
-      //   title: 'Interação medicamentosa!',
-      //   root:true,
-      //   text: message,
-      //   buttons: [
-      //     {
-      //       title: 'Fechar',       // Button title
-      //       default: true,    // Will be triggered by default if 'Enter' pressed.
-      //       handler: () => {
-      //         this.$modal.hide('dialog')
-      //       } // Button click handler
-      //     },
-      //   ]
-      // })
+
     }
   }
 }
