@@ -96,7 +96,7 @@ export default {
     selectedRadio: '',
     times: times,
     array: [],
-    pagination: 300,
+    pagination: 1000,
     dados: [],
     filter: [],
     autogrow: '',

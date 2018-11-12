@@ -32,7 +32,6 @@
         </md-card>
       </div>
     </div>
-    <button type="text" @click="showWarningModal" class="btn btn-button">Ola</button>
     <v-dialog/>
   </modal>
 </template>
