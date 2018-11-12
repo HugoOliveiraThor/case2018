@@ -79,6 +79,9 @@ export default {
     NavTabsCard,
     Modal
   },
+  created() {
+
+  },
   data: () => ({
     data: [],
     showDosage: false,
