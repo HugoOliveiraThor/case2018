@@ -23,7 +23,7 @@ const router = new VueRouter({
 })
 
 Vue.use(Toasted)
-Vue.use(VModal)
+Vue.use(VModal, { dialog: true })
 Vue.use(VueRouter)
 Vue.use(MaterialDashboard)
 Vue.use(GlobalComponents)

@@ -7,6 +7,7 @@
         <md-table-cell md-label="Consultório">{{ item.chamber }}</md-table-cell>
       </md-table-row>
     </md-table>
+    <v-dialog />
     <Modal titulo="Prescrição do paciente" :modalName=modalName />
   </div>
 </template>
@@ -58,7 +59,23 @@ export default {
   methods: {
     selectedItem (item) {
       this.$modal.show(this.modalName, {...item})
-    }
+    },
+    // showWarningModal (message) {
+    //   this.$modal.show('dialog', {
+    //     title: 'Interação medicamentosa!',
+    //     root:true,
+    //     text: message,
+    //     buttons: [
+    //       {
+    //         title: 'Fechar',       // Button title
+    //         default: true,    // Will be triggered by default if 'Enter' pressed.
+    //         handler: () => {
+    //           this.$modal.hide('dialog')
+    //         } // Button click handler
+    //       },
+    //     ]
+    //   })
+    // }
   }
 }
 </script>

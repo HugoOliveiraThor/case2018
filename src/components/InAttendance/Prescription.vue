@@ -80,14 +80,23 @@ export default {
     NavTabsCard,
     Modal
   },
+  created() {
+    // dados => "ACETAZOLAMIDA" e "AMITRIPTILINA" "IMIPRAMINA"
+    const dados = interacaoMedicamentosa.slice(1,1000)
+    this.intMedicamentosa = dados.map( i => {
+      return {...i , farmacos: [ i.Farmaco1, i.Farmaco2 ]}
+    })
+  },
   data: () => ({
+    intMedicamentosa : [],
+    arrayInteracao : [],
     data: [],
     showDosage: false,
     radio: false,
     selectedRadio: '',
     times: times,
     array: [],
-    pagination: 20,
+    pagination: 300,
     dados: [],
     filter: [],
     autogrow: '',
@@ -119,6 +128,7 @@ export default {
         })
     },
     selectMedication (med) {
+      this.verifyInteration(med)
       this.selectedRadio = ''
       const isExistInArray = this.array.filter(i => i.id === med.id)
       if (isExistInArray.length === 0) {
@@ -130,6 +140,42 @@ export default {
           this.selectedRadio = ''
         }
       }
+    },
+    verifyInteration (med) {
+      const interactions = this.isMedicationExistInInteracaoMedicamentose(med)
+      if(interactions.length) {
+        if (this.arrayInteracao.length === 0) { // Verify if our array is empty
+          this.arrayInteracao.push(...interactions)
+        } else {
+          if(this.isMedicationExistInInteracaoMedicamentose(med)) this.verifyIfHaveInteractions(med)
+        }
+      }
+    },
+    isMedicationExistInInteracaoMedicamentose (med) {
+      return this.intMedicamentosa.filter(i => {
+        if (i.farmacos.includes(med.nome)) return i
+      })
+    },
+    isMedicationExistsInArrayInteracaoMedicamentosa (med) {
+      return this.arrayInteracao.some(f => f.farmacos.includes(med.nome))
+    },
+    findInArrayInteracaoWhereIsTheMedSelected (med) {
+      return this.arrayInteracao.filter(a => a.farmacos.includes(med.nome))
+    },
+    verifyIfHaveInteractions (med) {
+      const data =this.findInArrayInteracaoWhereIsTheMedSelected(med)
+      data.forEach(element => {
+        const removeNameUsed = this.array.filter(d => d.nome !== med.Nome) // This necessary to avoid problem with comparison with the same name
+        removeNameUsed.forEach(m => { if (element.farmacos.includes(m.nome)) this.showWarningModal(element.Descricao) })
+      })
+    },
+    warningMessage(message) {
+      this.$toasted.show(message, {
+	      theme: "bubble",
+	      position: "top-center",
+        duration : 10000,
+        icon : 'warning',
+    })
     },
     save () {
       db.collection('patient')
@@ -148,6 +194,24 @@ export default {
         }).catch(() => {
           this.$toasted.global.error()
         })
+    },
+    showWarningModal (message) {
+      console.log('Entrou message', message)
+      this.$emit('bringMessage', message)
+      // this.$modal.show('dialog', {
+      //   title: 'Interação medicamentosa!',
+      //   root:true,
+      //   text: message,
+      //   buttons: [
+      //     {
+      //       title: 'Fechar',       // Button title
+      //       default: true,    // Will be triggered by default if 'Enter' pressed.
+      //       handler: () => {
+      //         this.$modal.hide('dialog')
+      //       } // Button click handler
+      //     },
+      //   ]
+      // })
     }
   }
 }
