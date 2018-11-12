@@ -67,6 +67,7 @@
 <script>
 import { Search, NavTabsCard } from '@/components'
 import db from '@/firebase/init'
+import {letters, times} from './data'
 import json from '@/initial_charge/medicamentos.json'
 import interacaoMedicamentosa from '@/initial_charge/interacao_medicamentosa.json'
 import Modal from './SimpleModal'
@@ -84,38 +85,14 @@ export default {
     showDosage: false,
     radio: false,
     selectedRadio: '',
-    times: [{ value: '12h em 12h' }, { value: '6h em 6h' }, { value: '8h em 8h' }, { value: '24h em 24h' }],
+    times: times,
     array: [],
     pagination: 20,
     dados: [],
     filter: [],
     autogrow: '',
     search: '',
-    letters: [
-      'A',
-      'B',
-      'C',
-      'D',
-      'E',
-      'F',
-      'G',
-      'H',
-      'I',
-      'J',
-      'L',
-      'M',
-      'N',
-      'O',
-      'P',
-      'Q',
-      'R',
-      'S',
-      'T',
-      'U',
-      'V',
-      'X',
-      'Z'
-    ]
+    letters: letters
   }),
   computed: {
     filteredList () {
