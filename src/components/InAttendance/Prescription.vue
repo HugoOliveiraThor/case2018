@@ -79,27 +79,14 @@ export default {
     NavTabsCard,
     Modal
   },
-  created () {
-    const valor = interacaoMedicamentosa.slice(1,10)
-    const extractFarmacos = valor.map(i =>{
-      return [i.Farmaco1,i.Farmaco2]
-    })
-    console.log('Extract', extractFarmacos)
-    const newValue = {...valor,extractFarmacos}
-    console.log(newValue)
-    this.alertMedication = valor
-    console.log(valor)
-  },
   data: () => ({
-    alertMedication : [],
-    arrayAlert : [],
     data: [],
     showDosage: false,
     radio: false,
     selectedRadio: '',
     times: [{ value: '12h em 12h' }, { value: '6h em 6h' }, { value: '8h em 8h' }, { value: '24h em 24h' }],
     array: [],
-    pagination: 1000,
+    pagination: 20,
     dados: [],
     filter: [],
     autogrow: '',
@@ -154,24 +141,19 @@ export default {
         })
     },
     selectMedication (med) {
-      console.log(med.nome)
-      this.alertMedication.filter(i => {
-        if (i.Farmaco1 === med.nome || i.Farmaco2 === med.nome) {
-          this.arrayAlert.push(i)
-        }
+      this.selectedRadio = ''
+      const isExistInArray = this.array.filter(i => {
+        return i.id === med.id
       })
-
-      // this.selectedRadio = ''
-      // const isExistInArray = this.array.filter(i => i.id === med.id)
-      // if (isExistInArray.length === 0) {
-      //   this.showDosage = true
-      //   this.array.push(med)
-      //   if (this.selectedRadio !== '') {
-      //     this.array.push(med)
-      //     this.showDosage = false
-      //     this.selectedRadio = ''
-      //   }
-      // }
+      if (isExistInArray.length === 0) {
+        this.showDosage = true
+        this.array.push(med)
+        if (this.selectedRadio !== '') {
+          this.array.push(med)
+          this.showDosage = false
+          this.selectedRadio = ''
+        }
+      }
     },
     save () {
       db.collection('patient')
@@ -190,9 +172,6 @@ export default {
         }).catch(() => {
           this.$toasted.global.error()
         })
-    },
-    filterMedication () {
-
     }
   }
 }
